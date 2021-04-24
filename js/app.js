@@ -113,3 +113,8 @@ yText
 .attr("data-axis", "y")
 .attr("class", "aText inactive y")
 .text("Lacks Healthcare (%)"); 
+
+//sending data to browser
+d3.csv("assets/data/data.csv").then(function(data) {
+  console.log(data);
+});
