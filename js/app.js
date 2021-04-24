@@ -114,7 +114,33 @@ yText
 .attr("class", "aText inactive y")
 .text("Lacks Healthcare (%)"); 
 
-//sending data to browser
+//  sending data to browser
+//  d3.csv("assets/data/data.csv").then(function(data) {
+//  console.log(data);
+//  });
+
+// Visualize the data
 d3.csv("assets/data/data.csv").then(function(data) {
-  console.log(data);
+visualize(data);
 });
+
+ // Adding x-axis line
+ function visualize(theData) {
+
+  var xMin;
+  var xMax;
+
+  var xScale = d3
+    .scaleLinear()
+    .domain([xMin, xMax])
+    .range([margin + labelArea, width - margin]);
+
+  var xAxis = d3.axisBottom(xScale);
+
+  svg
+    .append("g")
+    .call(xAxis)
+    .attr("class", "xAxis")
+    .attr("transform", "translate(0," + (height - margin - labelArea) + ")");
+
+}
