@@ -65,3 +65,31 @@ xText
 .attr("data-axis", "x")
 .attr("class", "aText inactive x")
 .text("Household Income (Median)");
+
+
+
+ // Creating Left Axis
+
+ var leftTextX = margin + tPadLeft;
+ var leftTextY = (height + labelArea) / 2 - labelArea;
+
+
+   svg.append("g").attr("class", "yText");
+   var yText = d3.select(".yText");
+
+   function yTextRefresh() {
+     yText.attr(
+       "transform",
+       "translate(" + leftTextX + ", " + leftTextY + ")rotate(-90)"
+     );
+   }
+
+   yTextRefresh();
+
+   yText
+   .append("text")
+   .attr("y", -26)
+   .attr("data-name", "obesity")
+   .attr("data-axis", "y")
+   .attr("class", "aText active y")
+   .text("Obese (%)"); 
