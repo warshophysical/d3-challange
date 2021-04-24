@@ -138,5 +138,17 @@ function visualize(theData) {
      .call(xAxis)
      .attr("class", "xAxis")
      .attr("transform", "translate(0," + (height - margin - labelArea) + ")");
+
+     var yScale = d3
+     .scaleLinear()
+     .range([height - margin - labelArea, margin]);
+
+     var yAxis = d3.axisLeft(yScale);
+
+     svg
+     .append("g")
+     .call(yAxis)
+     .attr("class", "yAxis")
+     .attr("transform", "translate(" + (margin + labelArea) + ", 0)");
   
  }
