@@ -86,10 +86,30 @@ xText
 
    yTextRefresh();
 
-   yText
-   .append("text")
-   .attr("y", -26)
-   .attr("data-name", "obesity")
-   .attr("data-axis", "y")
-   .attr("class", "aText active y")
-   .text("Obese (%)"); 
+
+//Obesity
+  yText
+  .append("text")
+  .attr("y", -26)
+  .attr("data-name", "obesity")
+  .attr("data-axis", "y")
+  .attr("class", "aText active y")
+  .text("Obese (%)"); 
+
+// Smokes
+ yText
+ .append("text")
+ .attr("x", 0)
+ .attr("data-name", "smokes")
+ .attr("data-axis", "y")
+ .attr("class", "aText inactive y")
+ .text("Smokes (%)");
+
+// Lacks Healthcare
+yText
+.append("text")
+.attr("y", 26)
+.attr("data-name", "healthcare")
+.attr("data-axis", "y")
+.attr("class", "aText inactive y")
+.text("Lacks Healthcare (%)"); 
