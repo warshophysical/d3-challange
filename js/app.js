@@ -38,7 +38,7 @@ var svg = d3
    );
  }
  xTextRefresh();
-
+//Poverty
  xText
    .append("text")
    .attr("y", -26)
@@ -46,3 +46,22 @@ var svg = d3
    .attr("data-axis", "x")
    .attr("class", "aText active x")
    .text("In Poverty (%)");
+
+
+//Age
+xText
+.append("text")
+.attr("y", 0)
+.attr("data-name", "age")
+.attr("data-axis", "x")
+.attr("class", "aText inactive x")
+.text("Age (Median)");
+
+//Income
+xText
+.append("text")
+.attr("y", 26)
+.attr("data-name", "income")
+.attr("data-axis", "x")
+.attr("class", "aText inactive x")
+.text("Household Income (Median)");
