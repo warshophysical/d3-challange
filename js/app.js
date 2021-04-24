@@ -11,42 +11,42 @@ var svg = d3
   .attr("class", "chart");
 
 
+// Margin for graph
+var margin = 20;
 
- // Margin for graph
- var margin = 20;
+// space for placing words
+var labelArea = 110;
 
- // space for placing words
- var labelArea = 110;
+// padding for the text
+var tPadBot = 40;
+var tPadLeft = 40;
 
- // padding for the text
- var tPadBot = 40;
- var tPadLeft = 40;
 
- // Creating bottom axis
+// Creating bottom axis
 
- svg.append("g").attr("class", "xText");
- var xText = d3.select(".xText");
+svg.append("g").attr("class", "xText");
+var xText = d3.select(".xText");
 
- function xTextRefresh() {
-   xText.attr(
-     "transform",
-     "translate(" +
-       ((width - labelArea) / 2 + labelArea) +
-       ", " +
-       (height - margin - tPadBot) +
-       ")"
-   );
- }
- xTextRefresh();
+function xTextRefresh() {
+  xText.attr(
+    "transform",
+    "translate(" +
+      ((width - labelArea) / 2 + labelArea) +
+      ", " +
+      (height - margin - tPadBot) +
+      ")"
+  );
+}
+xTextRefresh();
+
 //Poverty
- xText
-   .append("text")
-   .attr("y", -26)
-   .attr("data-name", "poverty")
-   .attr("data-axis", "x")
-   .attr("class", "aText active x")
-   .text("In Poverty (%)");
-
+xText
+.append("text")
+.attr("y", -26)
+.attr("data-name", "poverty")
+.attr("data-axis", "x")
+.attr("class", "aText active x")
+.text("In Poverty (%)");
 
 //Age
 xText
@@ -65,7 +65,6 @@ xText
 .attr("data-axis", "x")
 .attr("class", "aText inactive x")
 .text("Household Income (Median)");
-
 
 
  // Creating Left Axis
@@ -121,26 +120,23 @@ yText
 
 // Visualize the data
 d3.csv("assets/data/data.csv").then(function(data) {
-visualize(data);
-});
+  visualize(data);
+  });
 
- // Adding x-axis line
- function visualize(theData) {
 
-  var xMin;
-  var xMax;
-
+// Adding x-axis line
+function visualize(theData) {
+  
   var xScale = d3
     .scaleLinear()
-    .domain([xMin, xMax])
     .range([margin + labelArea, width - margin]);
-
+ 
   var xAxis = d3.axisBottom(xScale);
-
+ 
   svg
     .append("g")
-    .call(xAxis)
-    .attr("class", "xAxis")
-    .attr("transform", "translate(0," + (height - margin - labelArea) + ")");
-
-}
+     .call(xAxis)
+     .attr("class", "xAxis")
+     .attr("transform", "translate(0," + (height - margin - labelArea) + ")");
+  
+ }
