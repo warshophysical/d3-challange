@@ -209,6 +209,36 @@ function crGet() {
 }
 crGet();
 
+
+// This function allows to set up tooltip rules.
+var toolTip = d3
+.tip()
+.attr("class", "d3-tip")
+.offset([40, -60])
+.html(function(d) {
+  // x key
+  var theX;
+  // the state name.
+  var theState = "<div>" + d.state + "</div>";
+  // y value's key and value.
+  var theY = "<div>" + curY + ": " + d[curY] + "%</div>";
+  // If the x key is poverty
+  if (curX === "poverty") {
+    theX = "<div>" + curX + ": " + d[curX] + "%</div>";
+  }
+  else {
+    theX = "<div>" +
+      curX +
+      ": " +
+      parseFloat(d[curX]).toLocaleString("en") +
+      "</div>";
+  }
+  
+  return theState + theX + theY;
+});
+
+svg.call(toolTip);
+
   // making a grouping for dots and labels.
   var theCircles = svg.selectAll("g theCircles").data(theData).enter();
 
@@ -224,6 +254,19 @@ crGet();
     .attr("class", function(d) {
       return "stateCircle " + d.abbr;
     })
+    // Hover rules
+    .on("mouseover", function(d) {
+      // Show the tooltip
+      toolTip.show(d, this);
+      // Highlight the state circle's border
+      d3.select(this).style("stroke", "#323232");
+    })
+    .on("mouseout", function(d) {
+      // Remove the tooltip
+      toolTip.hide(d);
+      // Remove highlight
+      d3.select(this).style("stroke", "#e3e3e3");
+    });
 
 
     theCircles
@@ -239,6 +282,19 @@ crGet();
     })
     .attr("font-size", circRadius)
     .attr("class", "stateText")
+    // Hover Rules
+    .on("mouseover", function(d) {
+      // Show the tooltip
+      toolTip.show(d);
+      // Highlight the state circle's border
+      d3.select("." + d.abbr).style("stroke", "#323232");
+    })
+    .on("mouseout", function(d) {
+      // Remove tooltip
+      toolTip.hide(d);
+      // Remove highlight
+      d3.select("." + d.abbr).style("stroke", "#e3e3e3");
+    });
     
 
     
